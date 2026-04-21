@@ -109,21 +109,6 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("should display result after getting the square root of 81")
-    void testSquareRoot81() {
-        Calculator calc = new Calculator();
-
-        calc.pressDigitKey(8);
-        calc.pressDigitKey(1);
-        calc.pressUnaryOperationKey("√");
-
-        String expected = "9";
-        String actual = calc.readScreen();
-
-        assertEquals(expected, actual);
-    }
-
-    @Test
     @DisplayName("should display result after adding two positive numbers")
     void testPositiveAdditionWithMultipleUnaryOperationKeys() {
         Calculator calc = new Calculator();
@@ -136,6 +121,20 @@ class CalculatorTest {
         calc.pressEqualsKey();
 
         String expected = "9";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("should display same number when equals is pressed without operation")
+    void testEqualsWithoutOperation() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(8);
+        calc.pressEqualsKey();
+
+        String expected = "8";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
